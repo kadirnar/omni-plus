@@ -1,4 +1,5 @@
 """Seems like we want our own module so we can train multiple elements at once."""
+
 import random
 
 import torch
@@ -196,11 +197,11 @@ class VisionLanguageModel(nn.Module):
 
     def loss_function(self, logits, int_labels):
         """
-        logits FloatTensor shape: [B*T, vocab_size] (sequence of probabilities over vocab)
+        Logits FloatTensor shape: [B*T, vocab_size] (sequence of probabilities over vocab)
+
         labels intTensor shape: [B*T] (sequence of int vocab positions)
         - what is b*t? Shouldn't loss be (b, vocab) (b, 1) -> ints
         """
-
         return torch.nn.functional.cross_entropy(logits, int_labels)
 
     def print_trainable_parameters(self):
